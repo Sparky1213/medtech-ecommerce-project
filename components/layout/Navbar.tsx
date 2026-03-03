@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import Link from "next/link";
-import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { FaShoppingCart, FaUser, FaBars, FaTimes } from "react-icons/fa";
 import { useCart } from "@/context/CartContext";
 import { useSession, signOut } from "next-auth/react";
 
@@ -18,6 +18,7 @@ const Navbar = () => {
   const { cart } = useCart();
   const { data: session } = useSession();
   const [open, setOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -39,8 +40,8 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`${dmSans.className} fixed top-0 w-full h-28 z-999`}>
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-10 py-4">
+    <nav className={`${dmSans.className} fixed top-0 w-full z-999 bg-white/60 backdrop-blur-md`}>
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 lg:px-10 py-4">
         <Link href="/">
           <h1
             className={`${playfair.className} text-3xl cursor-pointer tracking-widest font-bold text-[#4E482E] hover:scale-105 transition`}
@@ -49,7 +50,8 @@ const Navbar = () => {
           </h1>
         </Link>
 
-        <div className="flex gap-10 text-2xl font-medium text-[#4E482E]">
+        {/* Desktop nav links - hidden on mobile, same as original on desktop */}
+        <div className="hidden lg:flex gap-10 text-2xl font-medium text-[#4E482E]">
           <Link href="/collections" className="hover:text-[#6B8E23] cursor-pointer transition">
             Collections
           </Link>
@@ -73,7 +75,7 @@ const Navbar = () => {
                     {session.user?.name?.charAt(0).toUpperCase()}
                   </div>
 
-                  <span className="text-sm font-semibold text-[#4E482E]">
+                  <span className="hidden lg:inline text-sm font-semibold text-[#4E482E]">
                     {session.user?.name}
                   </span>
                 </div>
@@ -112,13 +114,45 @@ const Navbar = () => {
           {session?.user?.role === "admin" && (
             <Link
               href="/admin"
-              className="px-5 py-2 cursor-pointer rounded-full bg-gradient-to-r from-[#4E482E] to-[#6D6A5F] text-white text-sm font-semibold shadow hover:scale-105 transition"
+              className="hidden lg:inline-block px-5 py-2 cursor-pointer rounded-full bg-gradient-to-r from-[#4E482E] to-[#6D6A5F] text-white text-sm font-semibold shadow hover:scale-105 transition"
             >
               Admin Panel
             </Link>
           )}
+
+          {/* Hamburger button - only on mobile */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 bg-white rounded-full shadow hover:scale-105 transition"
+          >
+            {mobileMenuOpen ? (
+              <FaTimes className="h-5 w-5 text-[#4E482E]" />
+            ) : (
+              <FaBars className="h-5 w-5 text-[#4E482E]" />
+            )}
+          </button>
         </div>
       </div>
+
+      {/* Mobile menu dropdown - only visible on mobile */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-white/95 backdrop-blur-sm shadow-lg border-t px-6 py-4 flex flex-col gap-4 text-lg font-medium text-[#4E482E]">
+          <Link href="/collections" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#6B8E23] transition py-2 border-b border-gray-100">
+            Collections
+          </Link>
+          <Link href="/#ourStory" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#6B8E23] transition py-2 border-b border-gray-100">
+            Our Story
+          </Link>
+          <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#6B8E23] transition py-2">
+            Contact
+          </Link>
+          {session?.user?.role === "admin" && (
+            <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="px-5 py-2 text-center cursor-pointer rounded-full bg-gradient-to-r from-[#4E482E] to-[#6D6A5F] text-white text-sm font-semibold shadow">
+              Admin Panel
+            </Link>
+          )}
+        </div>
+      )}
     </nav>
   );
 };

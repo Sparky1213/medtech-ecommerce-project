@@ -121,22 +121,23 @@ export default function CollectionsPage() {
         </div>
 
         {/* ================= HAIR OIL ================= */}
-        <section className="collection-section pointer-events-none z-999 min-h-screen flex flex-col items-center justify-center">
+        <section className="collection-section pointer-events-none z-10 bg-[#F4F3EE]/85 min-h-screen flex flex-col items-center justify-center -mt-28 lg:mt-0">
           <h1
-            className="text-[120px] font-extrabold text-transparent"
+            className="text-5xl lg:text-[120px] font-extrabold text-transparent"
             style={{ WebkitTextStroke: "2px #A6B11E" }}
           >
             HAIR OIL
           </h1>
 
-          <div className="flex gap-8 mt-1">
-            {hairOil.map((product) => {
+          <div className="flex flex-row gap-4 lg:gap-8 mt-1 items-center overflow-x-auto portrait:snap-x portrait:snap-mandatory landscape:justify-center max-w-full px-4 lg:px-0 w-full lg:w-auto pointer-events-auto">
+            {hairOil.map((product, index) => {
               console.log("Product ID:", product._id);
               return (
-                <Link key={product._id} href={`/collections/${product._id}`}>
+                <Link key={product._id} href={`/collections/${product._id}`} className="portrait:snap-center">
                   <ProductCard
                     image={product.image || "/images/oil/product1.png"}
                     title={product.name}
+                    index={index}
                   />
                 </Link>
               );
@@ -145,20 +146,21 @@ export default function CollectionsPage() {
         </section>
 
         {/* ================= HAIR TABLETS ================= */}
-        <section className="collection-section min-h-screen flex flex-col items-center justify-center">
+        <section className="collection-section z-20 bg-[#F4F3EE]/85 min-h-screen flex flex-col items-center justify-center">
           <h1
-            className="text-[120px] font-extrabold text-transparent"
+            className="text-5xl lg:text-[120px] font-extrabold text-transparent"
             style={{ WebkitTextStroke: "2px #A6B11E" }}
           >
             HAIR TABLETS
           </h1>
 
-          <div className="flex gap-8 mt-1">
-            {hairTablets.map((product) => (
-              <Link key={product._id} href={`/collections/${product._id}`}>
+          <div className="flex flex-row gap-4 lg:gap-8 mt-1 items-center overflow-x-auto portrait:snap-x portrait:snap-mandatory landscape:justify-center max-w-full px-4 lg:px-0 w-full lg:w-auto pointer-events-auto">
+            {hairTablets.map((product, index) => (
+              <Link key={product._id} href={`/collections/${product._id}`} className="portrait:snap-center">
                 <ProductCard
                   image={product.image || "/images/tablets/product1.png"}
                   title={product.name}
+                  index={index}
                 />
               </Link>
             ))}
@@ -166,20 +168,21 @@ export default function CollectionsPage() {
         </section>
 
         {/* ================= HAIR LEPA ================= */}
-        <section className="collection-section min-h-screen flex flex-col items-center justify-center">
+        <section className="collection-section z-30 bg-[#F4F3EE]/85 min-h-screen flex flex-col items-center justify-center">
           <h1
-            className="text-[120px] font-extrabold text-transparent"
+            className="text-5xl lg:text-[120px] font-extrabold text-transparent"
             style={{ WebkitTextStroke: "2px #A6B11E" }}
           >
             HAIR LEPA
           </h1>
 
-          <div className="mt-1">
-            {hairLepa.map((product) => (
-              <Link key={product._id} href={`/collections/${product._id}`}>
+          <div className="flex flex-row gap-4 lg:gap-8 mt-1 items-center overflow-x-auto portrait:snap-x portrait:snap-mandatory landscape:justify-center max-w-full px-4 lg:px-0 w-full lg:w-auto pointer-events-auto">
+            {hairLepa.map((product, index) => (
+              <Link key={product._id} href={`/collections/${product._id}`} className="portrait:snap-center">
                 <ProductCard
                   image={product.image || "/images/hairLepa/product1.png"}
                   title={product.name}
+                  index={index}
                 />
               </Link>
             ))}
@@ -190,20 +193,20 @@ export default function CollectionsPage() {
   );
 }
 
-function ProductCard({ image, title }: { image: string; title: string }) {
+function ProductCard({ image, title, index = 0 }: { image: string; title: string; index?: number }) {
   return (
-    <div className="w-90 h-full z-2 bg-white rounded-[40px] shadow-xl overflow-hidden flex flex-col items-center justify-between cursor-pointer">
-      <div className="py-6">
+    <div className={`w-[80vw] portrait:w-[80vw] landscape:w-52 lg:w-90 shrink-0 z-2 bg-white rounded-[30px] lg:rounded-[40px] shadow-xl overflow-hidden flex flex-col items-center justify-between cursor-pointer`}>
+      <div className="py-6 portrait:py-8 lg:py-6">
         <Image
           src={image}
           alt={title}
           width={1000}
           height={1000}
-          className="object-contain w-125 h-70"
+          className="object-contain w-64 portrait:w-64 landscape:w-40 lg:w-125 h-64 portrait:h-64 landscape:h-32 lg:h-70"
         />
       </div>
 
-      <div className="bg-[#A6B11E] text-white text-center py-6 text-2xl font-semibold w-full">
+      <div className="bg-[#A6B11E] text-white text-center py-4 portrait:py-5 lg:py-6 text-xl portrait:text-xl landscape:text-lg lg:text-2xl font-semibold w-full">
         {title}
       </div>
     </div>
