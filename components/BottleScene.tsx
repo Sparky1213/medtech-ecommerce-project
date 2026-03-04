@@ -26,28 +26,28 @@ export default function BottleScene() {
 
     tl.fromTo(
       bottle,
-      { y: 72, x: 50, opacity: 1, rotate: 82 },
-      { y: 0, opacity: 1, rotate: 45, duration: 1, scale: 1.5 },
+      { y: "9vh", x: "5vw", opacity: 1, rotate: 82 },
+      { y: "0vh", opacity: 1, rotate: 45, duration: 1, scale: 1.35 },
     )
       .to(bottle, {
         rotate: "-=80",
-        scale: 1.6,
-        yPercent: 40,
-        xPercent: 50,
+        scale: 1.45,
+        y: "16vh",
+        x: "20vw",
         duration: 1,
       })
       .to(bottle, {
         rotate: "-=45",
-        scale: 1.7,
-        yPercent: 10,
-        xPercent: 25,
+        scale: 1.52,
+        y: "6vh",
+        x: "10vw",
         duration: 1,
       })
       .to(bottle, {
         rotate: "-=100",
-        yPercent: "-40",
-        xPercent: "-14",
-        scale: 1.3,
+        y: "-14vh",
+        x: "-8vw",
+        scale: 1.22,
         duration: 1,
       });
   }, []);
@@ -60,7 +60,7 @@ export default function BottleScene() {
         alt="Bottle"
         height={1000}
         width={1000}
-        className=" md:w-100"
+        className="w-[min(52vw,16rem)] md:w-[min(26vw,26rem)]"
       />
     </div>
   );
