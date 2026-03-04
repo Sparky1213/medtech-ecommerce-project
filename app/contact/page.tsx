@@ -25,7 +25,7 @@ export default function InquirySection() {
 
         {/* LEFT CONTENT */}
         <div className="w-full lg:w-1/2 text-[#4E482E]">
-          <h2 className="text-5xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Let’s Start Your
             <br />
             Wellness Journey

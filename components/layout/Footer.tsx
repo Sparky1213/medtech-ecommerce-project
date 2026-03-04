@@ -22,8 +22,8 @@ export default function Footer() {
         <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
       </div>
 
-      <div className="max-w-[1300px] mx-auto px-20 py-20">
-        <div className="grid grid-cols-3 gap-20">
+      <div className="max-w-[1300px] mx-auto px-6 md:px-20 py-12 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-20">
 
           {/* COLUMN 1 */}
           <div>
@@ -105,7 +105,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Line */}
-        <div className="mt-16 pt-8 border-t border-[#4E482E]/30 text-center text-sm text-[#6D6A5F]">
+        <div className="mt-10 md:mt-16 pt-6 md:pt-8 border-t border-[#4E482E]/30 text-center text-sm text-[#6D6A5F]">
           © 2026 Ayurveda Shop. All Rights Reserved.
         </div>
       </div>

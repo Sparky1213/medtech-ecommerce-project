@@ -126,20 +126,20 @@ export default function ProductPage() {
                     className="absolute -bottom-20 -left-20 rotate-45"
                 />
 
-                <div className="w-full max-w-350 flex items-center justify-between z-10">
+                <div className="w-full max-w-350 flex flex-col lg:flex-row items-center justify-between z-10 pt-20 lg:pt-0">
 
-                    <div className="relative max-w-6xl h-1/2 flex items-end justify-center w-1/2">
+                    <div className="relative max-w-6xl h-1/2 flex items-end justify-center w-full lg:w-1/2">
                         <Image
                             src={product.image}
                             alt={product.name}
                             width={1000}
                             height={1000}
-                            className="object-contain w-180 h-170"
+                            className="object-contain w-64 h-64 lg:w-180 lg:h-170"
                         />
                     </div>
 
-                    <div className="w-1/2 pl-20 text-[#4E482E]">
-                        <h1 className="text-6xl font-bold mb-4">
+                    <div className="w-full lg:w-1/2 px-6 lg:px-0 lg:pl-20 mt-10 lg:mt-0 text-center lg:text-left text-[#4E482E]">
+                        <h1 className="text-4xl lg:text-6xl font-bold mb-4">
                             {product.name}
                         </h1>
 
