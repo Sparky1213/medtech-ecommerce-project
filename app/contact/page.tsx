@@ -8,7 +8,7 @@ const lexend = Lexend({ subsets: ["latin"] });
 export default function InquirySection() {
   return (
     <section
-      className={`relative   bg-linear-to-l  from-[#FFFEFE26] to-[#DFE2D2] min-h-screen flex items-center justify-center ${lexend.className}`}
+      className={`relative   bg-linear-to-l  from-[#FFFEFE26] to-[#DFE2D2] min-h-screen flex items-center justify-center pt-32 lg:pt-0 pb-10 lg:pb-0 ${lexend.className}`}
     >
       {/* Background */}
       <div className="absolute inset-0 -z-10">
@@ -21,11 +21,11 @@ export default function InquirySection() {
         <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
       </div>
 
-      <div className="max-w-[1300px] w-full flex gap-20 px-20 items-center">
+      <div className="max-w-[1300px] w-full flex flex-col lg:flex-row gap-10 lg:gap-20 px-6 lg:px-20 items-center">
 
         {/* LEFT CONTENT */}
-        <div className="w-1/2 text-[#4E482E]">
-          <h2 className="text-5xl font-bold mb-6">
+        <div className="w-full lg:w-1/2 text-[#4E482E]">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Let’s Start Your
             <br />
             Wellness Journey
@@ -44,7 +44,7 @@ export default function InquirySection() {
         </div>
 
         {/* RIGHT FORM */}
-        <div className="w-1/2 bg-[#F5F3EE] rounded-[30px] shadow-xl p-12 border border-gray-300">
+        <div className="w-full lg:w-1/2 bg-[#F5F3EE] rounded-[30px] shadow-xl p-6 lg:p-12 border border-gray-300">
           <h3 className="text-2xl font-semibold mb-8 text-center text-[#4E482E]">
             Send an Inquiry
           </h3>
