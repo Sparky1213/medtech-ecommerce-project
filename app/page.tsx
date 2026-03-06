@@ -104,7 +104,7 @@ export default function Home() {
           className="absolute inset-0 h-screen bg-[url(/images/amlaBg.png)] bg-center bg-no-repeat bg-cover text-white flex items-start lg:items-center justify-start z-10"
         >
           <div className="h-screen w-screen bg-black/20 absolute inset-0 z-999"></div>
-          <h1 className="text-balance text-[70px] md:text-8xl lg:text-[140px] leading-[1.1] font-extrabold w-[90%] md:max-w-5xl absolute left-4  md:left-20 lg:left-32 top-1/4 md:top-24 lg:top-28 z-10 tracking-tight">
+          <h1 className="text-balance text-[70px] md:text-8xl z-999 lg:text-[140px] leading-[1.1] font-extrabold w-[90%] md:max-w-5xl absolute left-4  md:left-20 lg:left-32 top-1/4 md:top-24 lg:top-28 z-10 tracking-tight">
             Nature&apos;s<br />Answer<br />to<br />Hair Fall.
           </h1>
         </section>
@@ -129,17 +129,17 @@ export default function Home() {
           ref={leavesRef}
           className="absolute inset-0 h-screen bg-linear-to-l from-[#FFFEFE26] to-[#DFE2D2] text-[#4E482E] flex items-center justify-end z-30 pointer-events-none"
         >
-          <h1 className="text-[#4E482E] text-balance absolute text-[40px] md:text-8xl lg:text-[130px] leading-[1.0] md:max-w-5xl text-right top-60 md:top-32 lg:top-45 right-4 md:right-32 lg:right-40 font-medium z-10 tracking-tight">
+          <h1 className="text-[#4E482E] text-balance absolute text-[40px] md:text-8xl lg:text-[130px] leading-[1.0] md:max-w-5xl text-right top-60 md:top-32 lg:top-60 right-4 md:right-32 lg:right-40 font-medium z-10 tracking-tight">
             Calmed by<br /><span className="font-extrabold  sm:text-[80px] md:text-[150px] leading-[0.8]">Ashwagandha</span>
           </h1>
           {/* Top Left Leaf */}
           <img src="/images/leaves/leaf3.png" className="leaf absolute w-40 md:w-80 lg:w-[400px] -top-10 md:-top-60 -left-10 md:-left-20 rotate-180 z-0 opacity-90" />
 
           {/* Bottom Left Leaf */}
-          <img src="/images/leaves/leaf1.png" className="leaf absolute w-80 md:w-100 lg:w-[480px] -bottom-50 md:-bottom-80 -left-1/5 md:right-2/6 rotate-0 z-0 opacity-80" />
+          <img src="/images/leaves/leaf1.png" className="leaf absolute w-80 md:w-100 lg:w-[540px] -bottom-50 md:-bottom-80  -left-1/5 md:left-2/12 rotate-0 z-0 opacity-80" />
 
           {/* Bottom Right Leaf */}
-          <img src="/images/leaves/leaf3.png" className="leaf absolute w-40 md:w-80 lg:w-[350px] top-20 md:-bottom-20 -right-20 md:-right-20 -rotate-90 z-0 opacity-90" />
+          <img src="/images/leaves/leaf3.png" className="leaf absolute w-40 md:w-80 lg:w-[350px] top-20 md:-bottom-20 -right-20 md:-right-60 -rotate-90 z-0 opacity-90" />
         </section>
 
         {/* Our Story Section */}
@@ -147,7 +147,7 @@ export default function Home() {
           id="ourStorySection"
           className="absolute inset-0 h-full bg-[#F5F5ED] text-[#4E482E] font-lexend flex sm:items-center sm:justify-center z-40 py-10 lg:py-0 pointer-events-none"
         >
-          <div id="ourStory" className="w-full max-w-[1400px] px-6 lg:px-14 flex flex-col md:flex-row sm:justify-center justify-end  items-end pb-40 mt-40 lg:mt-0 h-full relative z-10">
+          <div id="ourStory" className="w-full max-w-[1400px] px-6 lg:px-14 flex flex-col md:flex-row sm:justify-center justify-end gap-80 items-end pb-40 mt-40 lg:mt-0 h-full relative z-10">
             <div className="w-full md:w-1/3 lg:w-[450px] hidden sm:block">
               <p className="text-xl md:text-2xl lg:text-[26px] leading-[1.6] font-light text-justify text-[#4E482E] tracking-tight">
                 Ayurveda is one of the best health science for illness to wellness.We are follower of this tradition to make people healthy.Ayurveda was created on two purposes one is to make healthy people more healthy by its Rasayan chikitsa (rejuvenation)2nd purpose to treat the diseases and make disease free society.
