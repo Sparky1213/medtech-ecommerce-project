@@ -100,7 +100,7 @@ export default function BottleScene() {
     } else if (isXL) {
       tl.fromTo(
         bottle,
-        { yPercent: 10, xPercent: -15, rotate: 90, scale: 1.3 },
+        { yPercent: 6, xPercent: -15, rotate: 84, scale: 1.3 },
         { yPercent: 25, xPercent: 20, rotate: 0, scale: 2 },
       )
         .to(bottle, {
