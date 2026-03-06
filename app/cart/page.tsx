@@ -6,12 +6,13 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import Link from "next/link";
 
+
 export default function CartPage() {
   const { cart, addToCart, removeFromCart } = useCart();
 
   const increaseQty = (item: any) => {
     addToCart({
-      id: item.id,
+      _id: item.productId,
       name: item.name,
       price: item.price,
       image: item.image,
@@ -19,14 +20,7 @@ export default function CartPage() {
   };
 
   const decreaseQty = (item: any) => {
-    if (item.quantity === 1) {
-      removeFromCart(item.id);
-    } else {
-      removeFromCart(item.id);
-      for (let i = 1; i < item.quantity; i++) {
-        addToCart(item);
-      }
-    }
+    removeFromCart(item.productId);
   };
 
   return (
@@ -44,7 +38,7 @@ export default function CartPage() {
           <>
             {cart.map((item) => (
               <div
-                key={item.id}
+                key={item._id}
                 className="bg-white rounded-3xl shadow-md flex items-center justify-between px-8 py-6 mb-6"
               >
                 <div className="flex items-center gap-6">
@@ -64,7 +58,6 @@ export default function CartPage() {
                   </div>
                 </div>
 
-                {/* Quantity Controls (UI SAME STYLE) */}
                 <div className="flex flex-col items-center bg-[#A6B11E] rounded-2xl px-3 text-white">
                   <button
                     onClick={() => decreaseQty(item)}

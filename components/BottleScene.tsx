@@ -15,82 +15,97 @@ export default function BottleScene() {
     const bottle = bottleRef.current;
     if (!bottle) return;
 
+    const isMobile = window.innerWidth < 1024;
+
+    const container = document.getElementById("pinContainer");
+
+    // Fallback if pinContainer isn't found for some reason (e.g., initial render delay)
+    const triggerElement = container || document.body;
+    const endValue = container ? "+=300%" : "bottom bottom";
+
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: document.body,
+        trigger: triggerElement,
         start: "top top",
-        end: "bottom bottom",
+        end: endValue,
         scrub: true,
       },
     });
 
     if (isMobile) {
+      // Intro -> Amla
       tl.fromTo(
         bottle,
-        { y: -20, x: 50, opacity: 1, rotate: 82 },
-        { y: -80, opacity: 1, rotate: 45, duration: 1, scale: 1.5 },
+        { yPercent: 0, xPercent: 40, opacity: 1, rotate: 82, scale: 1.4 },
+        {
+          yPercent: 30,
+          xPercent: 10,
+          opacity: 1,
+          rotate: 1,
+          duration: 1,
+          scale: 1.8,
+        },
       )
+        // Amla -> Leaves
         .to(bottle, {
-          rotate: "-=80",
-          scale: 1.6,
+          rotate: "-90",
+          scale: 1.8,
           yPercent: 40,
-          xPercent: 50,
+          xPercent: 10,
           duration: 1,
         })
+        // Leaves -> Story
         .to(bottle, {
-          rotate: "-=45",
-          scale: 1.7,
-          yPercent: 10,
-          xPercent: 25,
-          duration: 1,
-        })
-        .to(bottle, {
-          rotate: 0,
-          yPercent: 10,
-          xPercent: -20,
-          scale: 1.4,
+          rotate: "-180",
+          yPercent: "-60",
+          xPercent: -10,
+          scale: 1.8,
           duration: 1,
         });
     } else {
+      // Intro -> Amla (Bottle stays perfectly right side up, slightly to the right)
       tl.fromTo(
         bottle,
-        { y: 72, x: 50, opacity: 1, rotate: 82 },
-        { y: 0, opacity: 1, rotate: 45, duration: 1, scale: 1.5 },
+        { yPercent: 0, xPercent: 15, opacity: 1, rotate: 82, scale: 0.9 },
+        {
+          yPercent: 0,
+          xPercent: 15,
+          opacity: 1,
+          rotate: 0,
+          duration: 1,
+          scale: 0.9,
+        }, // Straight up
       )
+        // Amla -> Leaves (Bottle tilts horizontally, centered/left)
         .to(bottle, {
-          rotate: "-=80",
-          scale: 1.6,
-          yPercent: 40,
-          xPercent: 50,
+          rotate: "-70",
+          scale: 1.1,
+          yPercent: 35, // Moved further down
+          xPercent: "-20",
           duration: 1,
         })
+        // Leaves -> Story (Bottle scales massively, perfectly centered, showing top cap)
         .to(bottle, {
-          rotate: "-=45",
-          scale: 1.7,
-          yPercent: 10,
-          xPercent: 25,
-          duration: 1,
-        })
-        .to(bottle, {
-          rotate: "-=100",
-          yPercent: "-40",
-          xPercent: "-14",
-          scale: 1.3,
+          rotate: 180,
+          yPercent: -35, // Adjusted to compensate for scaling
+          xPercent: 0,
+          scale: 1.8,
           duration: 1,
         });
     }
   }, []);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-50">
+    <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-40">
       <Image
         ref={bottleRef}
         src="/images/amlaBottle.png"
         alt="Bottle"
         height={1000}
         width={1000}
-        className=" md:w-100"
+        className="w-40 md:w-100 max-h-[50vh] lg:max-h-none object-contain"
       />
     </div>
   );
 }
+

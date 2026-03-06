@@ -63,7 +63,7 @@ export default function SignupPage() {
                 <div className="absolute bg-white/40 inset-0 backdrop-blur-sm"></div>
             </div>
 
-            <div className="w-120 bg-[#F5F3EE] rounded-[40px] shadow-xl px-10 py-14">
+            <div className="w-11/12 sm:w-120 bg-[#F5F3EE] rounded-[40px] shadow-xl px-6 sm:px-10 py-10 sm:py-14">
                 <h1 className="text-4xl font-bold text-center mb-10 text-black">
                     Create Account
                 </h1>
