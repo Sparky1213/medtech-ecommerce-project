@@ -71,7 +71,7 @@ export default function BottleScene() {
       // Intro -> Amla (Bottle stays perfectly right side up, slightly to the right)
       tl.fromTo(
         bottle,
-        { yPercent: 0, xPercent: "-28", opacity: 1, rotate: 82, scale: 1.2 },
+        { yPercent: 0, xPercent: "-20", opacity: 1, rotate: 82, scale: 1.2 },
         {
           yPercent: "20",
           xPercent: "20",
@@ -100,7 +100,7 @@ export default function BottleScene() {
     } else if (isXL) {
       tl.fromTo(
         bottle,
-        { yPercent: 0, xPercent: -35, rotate: 82, scale: 1.3 },
+        { yPercent: 10, xPercent: -15, rotate: 90, scale: 1.3 },
         { yPercent: 25, xPercent: 20, rotate: 0, scale: 2 },
       )
         .to(bottle, {
