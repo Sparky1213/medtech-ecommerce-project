@@ -36,7 +36,7 @@ export default function BottleScene() {
       // Intro -> Amla
       tl.fromTo(
         bottle,
-        { yPercent: 0, xPercent: 40, opacity: 1, rotate: 82, scale: 1.4 },
+        { yPercent: 0, xPercent: 40, opacity: 1, rotate: 82, scale: 1.2 },
         {
           yPercent: 30,
           xPercent: 10,
@@ -66,14 +66,14 @@ export default function BottleScene() {
       // Intro -> Amla (Bottle stays perfectly right side up, slightly to the right)
       tl.fromTo(
         bottle,
-        { yPercent: 0, xPercent: 15, opacity: 1, rotate: 82, scale: 0.9 },
+        { yPercent: 0, xPercent: "-28", opacity: 1, rotate: 82, scale: 1.2 },
         {
-          yPercent: 0,
+          yPercent: "20",
           xPercent: 15,
           opacity: 1,
           rotate: 0,
           duration: 1,
-          scale: 0.9,
+          scale: 1.8,
         }, // Straight up
       )
         // Amla -> Leaves (Bottle tilts horizontally, centered/left)
