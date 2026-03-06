@@ -36,23 +36,30 @@ export default function BottleScene() {
       // Intro -> Amla
       tl.fromTo(
         bottle,
-        { yPercent: 0, xPercent: 20, opacity: 1, rotate: 82, scale: 0.8 },
-        { yPercent: 30, xPercent: 10, opacity: 1, rotate: 45, duration: 1, scale: 1.2 },
+        { yPercent: 0, xPercent: 40, opacity: 1, rotate: 82, scale: 1.4 },
+        {
+          yPercent: 30,
+          xPercent: 10,
+          opacity: 1,
+          rotate: 1,
+          duration: 1,
+          scale: 1.8,
+        },
       )
         // Amla -> Leaves
         .to(bottle, {
-          rotate: "-10",
-          scale: 1.1,
+          rotate: "-90",
+          scale: 1.8,
           yPercent: 40,
-          xPercent: 0,
+          xPercent: 10,
           duration: 1,
         })
         // Leaves -> Story
         .to(bottle, {
-          rotate: 180,
-          yPercent: 20,
+          rotate: "-180",
+          yPercent: "-60",
           xPercent: -10,
-          scale: 1.0,
+          scale: 1.8,
           duration: 1,
         });
     } else {
@@ -60,7 +67,14 @@ export default function BottleScene() {
       tl.fromTo(
         bottle,
         { yPercent: 0, xPercent: 15, opacity: 1, rotate: 82, scale: 0.9 },
-        { yPercent: 0, xPercent: 15, opacity: 1, rotate: 0, duration: 1, scale: 0.9 }, // Straight up
+        {
+          yPercent: 0,
+          xPercent: 15,
+          opacity: 1,
+          rotate: 0,
+          duration: 1,
+          scale: 0.9,
+        }, // Straight up
       )
         // Amla -> Leaves (Bottle tilts horizontally, centered/left)
         .to(bottle, {
@@ -82,7 +96,7 @@ export default function BottleScene() {
   }, []);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-50">
+    <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-40">
       <Image
         ref={bottleRef}
         src="/images/amlaBottle.png"

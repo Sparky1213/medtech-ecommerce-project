@@ -103,8 +103,8 @@ export default function Home() {
           ref={fadeBg}
           className="absolute inset-0 h-screen bg-[url(/images/amlaBg.png)] bg-center bg-no-repeat bg-cover text-white flex items-start lg:items-center justify-start z-10"
         >
-          <div className="h-screen w-screen bg-black/20 absolute inset-0"></div>
-          <h1 className="text-balance text-6xl md:text-8xl lg:text-[140px] leading-[1.1] font-extrabold w-[90%] md:max-w-5xl absolute left-6 md:left-20 lg:left-32 top-16 md:top-24 lg:top-28 z-10 tracking-tight">
+          <div className="h-screen w-screen bg-black/20 absolute inset-0 z-999"></div>
+          <h1 className="text-balance text-[70px] md:text-8xl lg:text-[140px] leading-[1.1] font-extrabold w-[90%] md:max-w-5xl absolute left-4  md:left-20 lg:left-32 top-1/4 md:top-24 lg:top-28 z-10 tracking-tight">
             Nature&apos;s<br />Answer<br />to<br />Hair Fall.
           </h1>
         </section>
@@ -145,16 +145,15 @@ export default function Home() {
         {/* Our Story Section */}
         <section
           id="ourStorySection"
-          className="absolute inset-0 h-screen bg-[#F5F5ED] text-[#4E482E] font-lexend flex items-center justify-center z-40 py-10 lg:py-0 pointer-events-none"
+          className="absolute inset-0 h-full bg-[#F5F5ED] text-[#4E482E] font-lexend flex sm:items-center sm:justify-center z-40 py-10 lg:py-0 pointer-events-none"
         >
-          <div id="ourStory" className="w-full max-w-[1400px] px-6 lg:px-14 flex flex-col md:flex-row justify-between items-end pb-24 mt-40 lg:mt-0 h-full relative z-10">
-            <div className="w-full md:w-1/3 lg:w-[450px]">
+          <div id="ourStory" className="w-full max-w-[1400px] px-6 lg:px-14 flex flex-col md:flex-row sm:justify-center justify-end  items-end pb-40 mt-40 lg:mt-0 h-full relative z-10">
+            <div className="w-full md:w-1/3 lg:w-[450px] hidden sm:block">
               <p className="text-xl md:text-2xl lg:text-[26px] leading-[1.6] font-light text-justify text-[#4E482E] tracking-tight">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
               </p>
             </div>
 
-            <div className="hidden md:block w-1/3"></div> {/* Spacer for bottle */}
 
             <div className="w-full md:w-1/3 lg:w-[450px]">
               <p className="text-xl md:text-2xl lg:text-[26px] leading-[1.6] font-light text-justify text-[#4E482E] tracking-tight">
