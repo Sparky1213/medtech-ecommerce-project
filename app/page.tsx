@@ -136,7 +136,7 @@ export default function Home() {
           <img src="/images/leaves/leaf3.png" className="leaf absolute w-40 md:w-80 lg:w-[400px] -top-10 md:-top-60 -left-10 md:-left-20 rotate-180 z-0 opacity-90" />
 
           {/* Bottom Left Leaf */}
-          <img src="/images/leaves/leaf1.png" className="leaf absolute w-80 md:w-100 lg:w-[540px] -bottom-50 md:-bottom-80  -left-1/5 md:left-2/12 rotate-0 z-0 opacity-80" />
+          <img src="/images/leaves/leaf1.png" className="leaf absolute w-80 md:w-100 lg:w-[540px] -bottom-50 md:-bottom-80  -left-1/5 md:left-2/12 rotate-0 z-0 opacity-80 xl:-bottom-100" />
 
           {/* Bottom Right Leaf */}
           <img src="/images/leaves/leaf3.png" className="leaf absolute w-40 md:w-80 lg:w-[350px] top-20 md:-bottom-20 -right-20 md:-right-60 -rotate-90 z-0 opacity-90" />

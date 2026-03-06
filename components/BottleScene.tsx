@@ -15,11 +15,16 @@ export default function BottleScene() {
     const bottle = bottleRef.current;
     if (!bottle) return;
 
-    const isMobile = window.innerWidth < 1024;
+    const width = window.innerWidth;
+
+    const isMobile = width < 768;
+    const isTablet = width >= 768 && width < 1024;
+    const isDesktop = width >= 1024 && width < 1280;
+    const isXL = width >= 1280 && width < 1536;
+    const is2XL = width >= 1536;
 
     const container = document.getElementById("pinContainer");
 
-    // Fallback if pinContainer isn't found for some reason (e.g., initial render delay)
     const triggerElement = container || document.body;
     const endValue = container ? "+=300%" : "bottom bottom";
 
@@ -62,14 +67,14 @@ export default function BottleScene() {
           scale: 1.8,
           duration: 1,
         });
-    } else {
+    } else if (isDesktop) {
       // Intro -> Amla (Bottle stays perfectly right side up, slightly to the right)
       tl.fromTo(
         bottle,
         { yPercent: 0, xPercent: "-28", opacity: 1, rotate: 82, scale: 1.2 },
         {
           yPercent: "20",
-          xPercent: 15,
+          xPercent: "20",
           opacity: 1,
           rotate: 0,
           duration: 1,
@@ -81,7 +86,7 @@ export default function BottleScene() {
           rotate: "-80",
           scale: 1.8,
           yPercent: 20, // Moved further down
-          xPercent: "-10",
+          xPercent: "-20",
           duration: 1,
         })
         // Leaves -> Story (Bottle scales massively, perfectly centered, showing top cap)
@@ -92,8 +97,62 @@ export default function BottleScene() {
           scale: 1.8,
           duration: 1,
         });
+    } else if (isXL) {
+      tl.fromTo(
+        bottle,
+        { yPercent: 0, xPercent: -35, rotate: 82, scale: 1.3 },
+        { yPercent: 25, xPercent: 20, rotate: 0, scale: 2 },
+      )
+        .to(bottle, {
+          rotate: -80,
+          yPercent: 25,
+          xPercent: -12,
+          scale: 2,
+        })
+        .to(bottle, {
+          rotate: -180,
+          yPercent: -40,
+          xPercent: -12,
+          scale: 2,
+        });
+    } else if (is2XL) {
+      tl.fromTo(
+        bottle,
+        { yPercent: 0, xPercent: -40, rotate: 82, scale: 1.4 },
+        { yPercent: 25, xPercent: 25, rotate: 0, scale: 2.2 },
+      )
+        .to(bottle, {
+          rotate: -80,
+          yPercent: 30,
+          xPercent: -15,
+          scale: 2.2,
+        })
+        .to(bottle, {
+          rotate: -180,
+          yPercent: -45,
+          xPercent: -15,
+          scale: 2.2,
+        });
+    } else if (isTablet) {
+      tl.fromTo(
+        bottle,
+        { yPercent: "-40", xPercent: -20, rotate: 82, scale: 1.2 },
+        { yPercent: 20, xPercent: 10, rotate: 0, scale: 1.8 },
+      )
+        .to(bottle, {
+          rotate: -80,
+          yPercent: 20,
+          xPercent: -10,
+          scale: 1.8,
+        })
+        .to(bottle, {
+          rotate: -180,
+          yPercent: -35,
+          xPercent: -10,
+          scale: 1.8,
+        });
     }
-  }, []); 
+  }, []);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-40">
