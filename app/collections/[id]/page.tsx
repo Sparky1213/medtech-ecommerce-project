@@ -1,4 +1,3 @@
-
 "use client";
 
 import Navbar from "@/components/layout/Navbar";
@@ -26,14 +25,6 @@ export default function ProductPage() {
     const amlaRef = useRef<HTMLDivElement>(null);
     const leavesRef = useRef<HTMLDivElement>(null);
 
-    const [toast, setToast] = useState<string | null>(null);
-
-    const showToast = (message: string) => {
-        setToast(message);
-        setTimeout(() => {
-            setToast(null);
-        }, 2500);
-    };
     const { id } = useParams();
     const { addToCart } = useCart();
     const { cart } = useCart();
@@ -106,14 +97,10 @@ export default function ProductPage() {
             className={`bg-[#F4F3EE] min-h-screen relative overflow-hidden ${lexend.className}`}
         >
             <Navbar />
-            {toast && (
-                <div className="fixed top-25 right-10 bg-[#4E482E] text-white px-6 py-3 rounded-xl shadow-2xl z-50 transition-all duration-300">
-                    {toast}
-                </div>
-            )}
+
             <section
                 ref={amlaRef}
-                className="relative h-screen flex items-center justify-center overflow-hidden"
+                className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden"
             >
                 <Image
                     src="/images/amla.png"
@@ -139,104 +126,54 @@ export default function ProductPage() {
                     className="absolute -bottom-20 -left-20 rotate-45"
                 />
 
-                <div className="w-full max-w-350 flex items-center justify-between z-10">
+                <div className="w-full max-w-350 flex flex-col lg:flex-row items-center justify-between z-10 px-4 lg:px-0">
 
-                    <div className="relative max-w-6xl h-1/2 flex items-end justify-center w-1/2">
-
-                        {product.discount > 0 && (
-                            <div className="absolute top-10 left-10 bg-[#A6B11E] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                                -{product.discount}%
-                            </div>
-                        )}
+                    <div className="relative max-w-6xl h-1/2 flex items-end justify-center w-full lg:w-1/2">
                         <Image
                             src={product.image}
                             alt={product.name}
                             width={1000}
                             height={1000}
-                            className="object-contain w-180 h-170"
+                            className="object-contain w-100 h-100 md:w-140 md:h-150 lg:w-180 lg:h-170"
                         />
                     </div>
 
-                    <div className="w-1/2 pl-24 text-[#4E482E]">
-
-                        <h1 className="text-6xl font-extrabold mb-6 tracking-tight leading-tight">
+                    <div className="w-full lg:w-1/2 pl-0 lg:pl-20 text-[#4E482E] mt-6 lg:mt-0">
+                        <h1 className="text-3xl lg:text-6xl font-bold mb-4">
                             {product.name}
                         </h1>
 
-                        <div className="flex items-center gap-6 mb-6">
-                            <div className="flex items-center gap-4">
-
-                                {product.discount > 0 ? (
-                                    <>
-                                        <span className="text-xl line-through text-gray-400">
-                                            ₹ {product.price}
-                                        </span>
-
-                                        <span className="text-3xl font-bold text-[#A6B11E]">
-                                            ₹ {Math.round(product.price - (product.price * product.discount) / 100)}
-                                        </span>
-
-                                        <span className="text-sm text-green-600 font-semibold">
-                                            {product.discount}% OFF
-                                        </span>
-                                    </>
-                                ) : (
-                                    <span className="text-3xl font-bold text-[#A6B11E]">
-                                        ₹ {product.price}
-                                    </span>
-                                )}
-
-                            </div>
-
-                            {product.stock > 0 && (
-                                <span className="text-sm px-4 py-1 rounded-full bg-[#4E482E]/10 text-[#4E482E] font-medium">
-                                    In Stock
-                                </span>
-                            )}
-                        </div>
-
+                        <h3 className="text-xl font-semibold mb-6">
+                            ₹ {product.price}
+                        </h3>
                         {product.stock === 0 ? (
-                            <p className="text-red-600 font-semibold text-lg mb-6">
+                            <p className="text-red-600 font-semibold text-lg mb-4">
                                 Out of Stock
                             </p>
                         ) : product.stock <= 5 ? (
-                            <p className="text-orange-500 font-medium text-lg mb-6">
+                            <p className="text-orange-500 font-medium text-lg mb-4">
                                 Only {product.stock} left in stock!
                             </p>
                         ) : null}
-
-                        <p className="text-lg leading-relaxed mb-10 text-[#6D6A5F] max-w-xl">
+                        <p className="text-lg leading-relaxed mb-8 text-[#6D6A5F]">
                             {product.description}
                         </p>
 
-                        <div className="flex items-center gap-6">
-                            <Button
-                                bgColor={product.stock === 0 ? "gray" : "brown"}
-                                title={product.stock === 0 ? "Out of Stock" : "Add to Cart"}
-                                disabled={product.stock === 0}
-                                onClick={() => {
-                                    if (product.stock === 0) return;
+                        <Button
+                            bgColor={product.stock === 0 ? "gray" : "brown"}
+                            title={product.stock === 0 ? "Out of Stock" : "Add to Cart"}
+                            disabled={product.stock === 0}
+                            onClick={() => {
+                                if (product.stock === 0) return;
 
-                                    addToCart({
-                                        _id: product._id,
-                                        name: product.name,
-                                        price:
-                                            product.discount > 0
-                                                ? Math.round(product.price - (product.price * product.discount) / 100)
-                                                : product.price,
-                                        image: product.image,
-                                    });
-
-                                    showToast("Product added to cart 🛒");
-                                }}
-                            />
-
-                            {product.stock > 0 && (
-                                <span className="text-sm text-[#6D6A5F]">
-                                    Secure & Fast Delivery
-                                </span>
-                            )}
-                        </div>
+                                addToCart({
+                                    id: product._id,
+                                    name: product.name,
+                                    price: product.price,
+                                    image: product.image,
+                                });
+                            }}
+                        />
                     </div>
                 </div>
             </section>
