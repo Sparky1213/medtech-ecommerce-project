@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Lexend } from "next/font/google";
+import Footer from "@/components/layout/Footer";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -43,7 +44,7 @@ export default function InquirySection() {
               Have questions about our products? Want personalized
               recommendations? Reach out to us and our team will
               guide you toward healthier hair and holistic wellness.
-              We&apos;re here to help you grow naturally.
+              We're here to help you grow naturally.
             </p>
 
             {/* Contact Info */}
@@ -140,6 +141,11 @@ export default function InquirySection() {
         </div>
 
       </section>
+
+      {/* Footer only on contact page */}
+
+      <Footer />
+
     </>
   );
 }

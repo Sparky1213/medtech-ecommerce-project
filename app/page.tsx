@@ -164,22 +164,33 @@ export default function Home() {
           id="ourStorySection"
           className="absolute inset-0 bg-[#F5F5ED] text-[#4E482E] flex items-center justify-center"
         >
+          <div className="max-w-[1400px] w-full px-10 flex items-center justify-between">
 
-          <div className="max-w-5xl text-xl leading-relaxed text-center px-6">
+            {/* LEFT TEXT */}
+            <div className="w-[450px] text-[24px] leading-[1.8] text-justify tracking-[0.2px]">
+              Ayurveda is one of the best health science for illness to wellness.
+              We are follower of this tradition to make people healthy. Ayurveda
+              was created on two purposes one is to make healthy people more
+              healthy by its Rasayan chikitsa (rejuvenation) 2nd purpose to treat
+              the diseases and make disease free society.
+            </div>
 
-            Ayurveda is one of the oldest health sciences focused on wellness.
+            {/* CENTER SPACE FOR BOTTLESCENE */}
+            <div className="w-[260px]"></div>
 
-            Our mission since 2011 is to help people achieve healthier lives
-
-            through authentic Ayurvedic treatments and herbal formulations.
+            {/* RIGHT TEXT */}
+            <div className="w-[480px] text-[24px] leading-[1.8] text-justify tracking-[0.2px]">
+              So we are trying our best to fulfill among two purposes since 2011.
+              Our speciality in obesity, chronic skin disorders, Women’s disorders
+              like Pcos, pcod, irregular or painful menstruation, hormonal imbalance.
+              We are treating all above disorders successfully with authentic
+              Ayurvedic medicine & classical Panchkarma.
+            </div>
 
           </div>
-
         </section>
-
       </div>
 
-      <Footer />
 
     </main>
 
