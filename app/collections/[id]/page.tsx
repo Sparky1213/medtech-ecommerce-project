@@ -24,6 +24,14 @@ export default function ProductPage() {
     const containerRef = useRef<HTMLDivElement>(null);
     const amlaRef = useRef<HTMLDivElement>(null);
     const leavesRef = useRef<HTMLDivElement>(null);
+    const [toast, setToast] = useState<string | null>(null);
+
+    const showToast = (message: string) => {
+        setToast(message);
+        setTimeout(() => {
+            setToast(null);
+        }, 2500);
+    };
 
     const { id } = useParams();
     const { addToCart } = useCart();
@@ -97,7 +105,11 @@ export default function ProductPage() {
             className={`bg-[#F4F3EE] min-h-screen relative overflow-hidden ${lexend.className}`}
         >
             <Navbar />
-
+            {toast && (
+                <div className="fixed top-24 right-6 bg-[#4E482E] text-white px-6 py-3 rounded-xl shadow-2xl z-50 transition-all duration-300">
+                    {toast}
+                </div>
+            )}
             <section
                 ref={amlaRef}
                 className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden"
@@ -172,6 +184,8 @@ export default function ProductPage() {
                                     price: product.price,
                                     image: product.image,
                                 });
+
+                                showToast("Product added to cart 🛒");
                             }}
                         />
                     </div>
