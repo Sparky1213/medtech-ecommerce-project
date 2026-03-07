@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import Link from "next/link";
-import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { FaShoppingCart, FaUser, FaBars, FaTimes } from "react-icons/fa";
 import { useCart } from "@/context/CartContext";
 import { useSession, signOut } from "next-auth/react";
 
@@ -18,6 +18,7 @@ const Navbar = () => {
   const { cart } = useCart();
   const { data: session } = useSession();
   const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -39,17 +40,17 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`${dmSans.className} fixed top-0 w-full h-28 z-999`}>
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-10 py-4">
+    <nav className={`${dmSans.className} fixed top-0 w-full z-999 bg-[#F4F3EE]/80 backdrop-blur-md`}>
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 lg:px-10 py-4">
         <Link href="/">
           <h1
-            className={`${playfair.className} text-3xl cursor-pointer tracking-widest font-bold text-[#4E482E] hover:scale-105 transition`}
+            className={`${playfair.className} text-2xl lg:text-3xl cursor-pointer tracking-widest font-bold text-[#4E482E] hover:scale-105 transition`}
           >
             MED<span className="text-[#6B8E23]">TECH</span>
           </h1>
         </Link>
 
-        <div className="flex gap-10 text-2xl font-medium text-[#4E482E]">
+        <div className="hidden lg:flex gap-10 text-2xl font-medium text-[#4E482E]">
           <Link href="/collections" className="hover:text-[#6B8E23] cursor-pointer transition">
             Collections
           </Link>
@@ -117,8 +118,26 @@ const Navbar = () => {
               Admin Panel
             </Link>
           )}
+
+          {/* Hamburger — mobile only */}
+          <button
+            className="lg:hidden p-2 text-[#4E482E]"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <FaTimes className="h-5 w-5" /> : <FaBars className="h-5 w-5" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile dropdown menu */}
+      {menuOpen && (
+        <div className="lg:hidden bg-[#F4F3EE]/95 backdrop-blur-md px-6 pb-4 flex flex-col gap-4 text-lg font-medium text-[#4E482E]">
+          <Link href="/collections" onClick={() => setMenuOpen(false)} className="hover:text-[#6B8E23] transition">Collections</Link>
+          <Link href="/#ourStory" onClick={() => setMenuOpen(false)} className="hover:text-[#6B8E23] transition">Our Story</Link>
+          <Link href="/contact" onClick={() => setMenuOpen(false)} className="hover:text-[#6B8E23] transition">Contact</Link>
+        </div>
+      )}
     </nav>
   );
 };

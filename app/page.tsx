@@ -126,80 +126,80 @@ export default function Home() {
         ref={amlaRef}
         className="h-screen relative bg-linear-to-l  from-[#FFFEFE26] to-[#DFE2D2] text-[#4E482E] flex items-center justify-center"
       >
-        <h1 className="text-pretty text-[160px] leading-tight font-normal w-1/6 absolute left-70 top-30 text-6xl">
+        <h1 className="text-pretty text-7xl lg:text-[160px] leading-tight font-normal w-3/4 lg:w-1/6 absolute left-6 lg:left-70 top-10 lg:top-30 lg:text-6xl">
           Rooted in <span className="font-extrabold">Amla</span>
         </h1>
         <img
           src="/images/amla.png"
-          className="amla amla-1 absolute w-80 -top-40 left-10"
+          className="amla amla-1 absolute w-28 lg:w-80 -top-40 left-10"
         />
         <img
           src="/images/amla.png"
-          className="amla amla-2 absolute w-62 bottom-10 -left-10 rotate-300"
+          className="amla amla-2 absolute w-22 lg:w-62 bottom-10 -left-10 rotate-300"
         />
         <img
           src="/images/amla.png"
-          className="amla amla-3 absolute w-66 top-1/6 -right-20 rotate-320"
+          className="amla amla-3 absolute w-24 lg:w-66 top-1/6 -right-20 rotate-320"
         />
         <img
           src="/images/amla.png"
-          className="amla amla-4 absolute w-68 bottom-10 right-3/12 rotate-120"
+          className="amla amla-4 absolute w-24 lg:w-68 bottom-10 right-3/12 rotate-120"
         />
         {/* -- */}
         <img
           src="/images/amla.png"
-          className="amla amla-1 absolute w-60 top-3/10 left-3/14 rotate-18"
+          className="amla amla-1 absolute w-20 lg:w-60 top-3/10 left-3/14 rotate-18"
         />
         <img
           src="/images/frontAmla.png"
-          className="amla amla-2 absolute w-62 z-99 -bottom-36 left-4/10 rotate-104"
+          className="amla amla-2 absolute w-22 lg:w-62 z-99 -bottom-36 left-4/10 rotate-104"
         />
         <img
           src="/images/frontAmla.png"
-          className="amla amla-3 absolute w-66 top-3/7 right-7/16"
+          className="amla amla-3 absolute w-24 lg:w-66 top-3/7 right-7/16"
         />
         <img
           src="/images/frontAmla.png"
-          className="amla amla-4 absolute w-68 -bottom-40 right-1/10 rotate-140"
+          className="amla amla-4 absolute w-24 lg:w-68 -bottom-40 right-1/10 rotate-140"
         />
       </section>
 
       <section
         ref={leavesRef}
-        className="h-screen relative bg-linear-to-l  from-[#FFFEFE26] to-[#DFE2D2] text-[#4E482E] flex items-center justify-center"
+        className="h-[60vh] lg:h-screen relative bg-linear-to-l  from-[#FFFEFE26] to-[#DFE2D2] text-[#4E482E] flex items-center justify-center z-60 lg:z-auto"
       >
-        <h1 className="text-[#4E482E] absolute text-9xl w-2/3 text-right top-1/6 right-1/8 font-400">
+        <h1 className="text-[#4E482E] absolute text-5xl lg:text-9xl w-11/12 lg:w-2/3 text-right top-10 lg:top-1/6 right-4 lg:right-1/8 font-400">
           Calmed by <span className="font-extrabold">Ashwagandha</span>
         </h1>
         <img
           src="/images/leaves/leaf1.png"
-          className="leaf leaf-3 absolute w-160 -bottom-7/14 left-46 rotate-20"
+          className="leaf leaf-3 absolute w-60 lg:w-160 -bottom-4/14 lg:-bottom-7/14 left-46 rotate-20"
         />
         <img
           src="/images/leaves/leaf3.png"
-          className="leaf leaf-2 absolute w-200 -top-170 -left-110 rotate-120"
+          className="leaf leaf-2 absolute w-70 lg:w-200 -top-100 lg:-top-170 -left-110 rotate-120"
         />
         <img
           src="/images/leaves/leaf3.png"
-          className="leaf leaf-4 absolute w-180 -bottom-180 -right-1/12 z-99"
+          className="leaf leaf-4 absolute w-60 lg:w-180 -bottom-100 lg:-bottom-180 -right-1/12 z-99"
         />
       </section>
 
-      <section className="h-screen bg-linear-to-l  from-[#FFFEFE26] to-[#DFE2D2] text-[#4E482E] font-lexend flex items-center justify-center">
-        <div id="ourStory" className="max-w-7xl p-14 flex justify-between items-center gap-75">
+      <section className="min-h-screen lg:h-screen bg-linear-to-l  from-[#FFFEFE26] to-[#DFE2D2] text-[#4E482E] font-lexend flex items-center justify-center relative z-60 lg:z-auto py-10 lg:py-0">
+        <div id="ourStory" className="max-w-7xl p-6 lg:p-14 flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-75">
           <Image
             src="/images/p1.png"
             alt="Bottle"
             height={1000}
             width={10000}
-            className="w-150"
+            className="w-full max-w-xs lg:max-w-none lg:w-150"
           />
           <Image
             src="/images/p2.png"
             alt="Bottle"
             height={1000}
             width={10000}
-            className="w-150"
+            className="w-full max-w-xs lg:max-w-none lg:w-150"
           />
         </div>
       </section>

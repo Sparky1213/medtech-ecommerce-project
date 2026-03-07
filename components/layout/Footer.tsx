@@ -22,12 +22,12 @@ export default function Footer() {
         <div className="absolute inset-0 bg-white/80 backdrop-blur-sm" />
       </div>
 
-      <div className="max-w-[1300px] mx-auto px-20 py-20">
-        <div className="grid grid-cols-3 gap-20">
+      <div className="max-w-[1300px] mx-auto px-6 lg:px-20 py-12 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-20">
 
           {/* COLUMN 1 */}
           <div>
-            <h3 className="text-3xl font-bold mb-4">
+            <h3 className="text-2xl lg:text-3xl font-bold mb-4">
               Ayurveda Shop
             </h3>
 

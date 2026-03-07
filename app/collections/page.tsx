@@ -3,7 +3,7 @@
 import Navbar from "@/components/layout/Navbar";
 import { Lexend } from "next/font/google";
 import Image from "next/image";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -22,11 +22,99 @@ type Product = {
   image?: string;
 };
 
+/* ── Mobile Carousel (1 card portrait, 2 cards landscape) ── */
+function MobileCarousel({ products, defaultImage }: { products: Product[]; defaultImage: string }) {
+  const [current, setCurrent] = useState(0);
+  const [isLandscape, setIsLandscape] = useState(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  useEffect(() => {
+    const check = () => setIsLandscape(window.innerWidth > window.innerHeight);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const perPage = isLandscape ? 2 : 1;
+  const maxIndex = Math.max(0, products.length - perPage);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && current < maxIndex) setCurrent((p) => p + 1);
+      if (diff < 0 && current > 0) setCurrent((p) => p - 1);
+    }
+  }, [current, maxIndex]);
+
+  const cardWidth = isLandscape ? 50 : 100; // percent
+
+  return (
+    <div
+      className="w-full overflow-hidden pointer-events-auto"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <div
+        className="flex transition-transform duration-300 ease-in-out"
+        style={{ transform: `translateX(-${current * cardWidth}%)` }}
+      >
+        {products.map((product) => (
+          <div
+            key={product._id}
+            className="flex-shrink-0 px-3"
+            style={{ width: `${cardWidth}%` }}
+          >
+            <Link href={`/collections/${product._id}`} className="pointer-events-auto">
+              <div className="bg-white rounded-[40px] shadow-xl overflow-hidden flex flex-col items-center cursor-pointer">
+                <div className="py-4">
+                  <Image
+                    src={product.image || defaultImage}
+                    alt={product.name}
+                    width={400}
+                    height={300}
+                    className="object-contain w-full h-44"
+                  />
+                </div>
+                <div className="bg-[#A6B11E] text-white text-center py-4 text-lg font-semibold w-full">
+                  {product.name}
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </div>
+
+      {/* Dot indicators */}
+      <div className="flex justify-center gap-2 mt-3 pointer-events-auto">
+        {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`w-2.5 h-2.5 rounded-full transition-colors ${
+              i === current ? "bg-[#A6B11E]" : "bg-gray-300"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function CollectionsPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [products, setProducts] = useState<Product[]>([]);
 
-  // ✅ Fetch from DB
   useEffect(() => {
     fetch("/api/products")
       .then((res) => res.json())
@@ -54,15 +142,12 @@ export default function CollectionsPage() {
     { scope: containerRef },
   );
 
-  // ✅ Category filters
   const hairOil = products.filter((p) =>
     p.category?.toLowerCase().includes("oil"),
   );
-
   const hairTablets = products.filter((p) =>
     p.category?.toLowerCase().includes("tablet"),
   );
-
   const hairLepa = products.filter((p) =>
     p.category?.toLowerCase().includes("lepa"),
   );
@@ -75,7 +160,7 @@ export default function CollectionsPage() {
         className={`relative pointer-events-none bg-[#F4F3EE] ${lexend.className}`}
       >
         {/* FIXED BACKGROUND */}
-        <div className="fixed inset-0 z-1 overflow-hidden ">
+        <div className="fixed inset-0 z-1 overflow-hidden">
           <Image
             src="/images/amla.png"
             alt="Amla"
@@ -121,39 +206,48 @@ export default function CollectionsPage() {
         </div>
 
         {/* ================= HAIR OIL ================= */}
-        <section className="collection-section pointer-events-none z-999 min-h-screen flex flex-col items-center justify-center">
+        <section className="collection-section pointer-events-none z-10 min-h-screen flex flex-col items-center justify-center pt-16 lg:pt-0 bg-[#F4F3EE]/85">
           <h1
-            className="text-[120px] font-extrabold text-transparent"
+            className="text-[64px] lg:text-[120px] font-extrabold text-transparent"
             style={{ WebkitTextStroke: "2px #A6B11E" }}
           >
             HAIR OIL
           </h1>
 
-          <div className="flex gap-8 mt-1">
-            {hairOil.map((product) => {
-              console.log("Product ID:", product._id);
-              return (
-                <Link key={product._id} href={`/collections/${product._id}`}>
-                  <ProductCard
-                    image={product.image || "/images/oil/product1.png"}
-                    title={product.name}
-                  />
-                </Link>
-              );
-            })}
+          {/* Mobile carousel */}
+          <div className="w-full px-4 mt-4 lg:hidden">
+            <MobileCarousel products={hairOil} defaultImage="/images/oil/product1.png" />
+          </div>
+
+          {/* Desktop row */}
+          <div className="hidden lg:flex gap-8 mt-1 pointer-events-auto">
+            {hairOil.map((product) => (
+              <Link key={product._id} href={`/collections/${product._id}`}>
+                <ProductCard
+                  image={product.image || "/images/oil/product1.png"}
+                  title={product.name}
+                />
+              </Link>
+            ))}
           </div>
         </section>
 
         {/* ================= HAIR TABLETS ================= */}
-        <section className="collection-section min-h-screen flex flex-col items-center justify-center">
+        <section className="collection-section z-20 min-h-screen flex flex-col items-center justify-center pt-16 lg:pt-0 bg-[#F4F3EE]/85 lg:-mt-28">
           <h1
-            className="text-[120px] font-extrabold text-transparent"
+            className="text-[48px] lg:text-[120px] font-extrabold text-transparent"
             style={{ WebkitTextStroke: "2px #A6B11E" }}
           >
             HAIR TABLETS
           </h1>
 
-          <div className="flex gap-8 mt-1">
+          {/* Mobile carousel */}
+          <div className="w-full px-4 mt-4 lg:hidden">
+            <MobileCarousel products={hairTablets} defaultImage="/images/tablets/product1.png" />
+          </div>
+
+          {/* Desktop row */}
+          <div className="hidden lg:flex gap-8 mt-1 pointer-events-auto">
             {hairTablets.map((product) => (
               <Link key={product._id} href={`/collections/${product._id}`}>
                 <ProductCard
@@ -166,15 +260,21 @@ export default function CollectionsPage() {
         </section>
 
         {/* ================= HAIR LEPA ================= */}
-        <section className="collection-section min-h-screen flex flex-col items-center justify-center">
+        <section className="collection-section z-30 min-h-screen flex flex-col items-center justify-center pt-16 lg:pt-0 bg-[#F4F3EE]/85 lg:-mt-28">
           <h1
-            className="text-[120px] font-extrabold text-transparent"
+            className="text-[64px] lg:text-[120px] font-extrabold text-transparent"
             style={{ WebkitTextStroke: "2px #A6B11E" }}
           >
             HAIR LEPA
           </h1>
 
-          <div className="mt-1">
+          {/* Mobile carousel */}
+          <div className="w-full px-4 mt-4 lg:hidden">
+            <MobileCarousel products={hairLepa} defaultImage="/images/hairLepa/product1.png" />
+          </div>
+
+          {/* Desktop row */}
+          <div className="hidden lg:flex mt-1 pointer-events-auto">
             {hairLepa.map((product) => (
               <Link key={product._id} href={`/collections/${product._id}`}>
                 <ProductCard
