@@ -127,7 +127,7 @@ export default function Home() {
             alt="amla"
             width={300}
             height={300}
-            className=" absolute w-20 lg:w-60 bottom-[10vh] -left-[2vw] rotate-[310deg] z-50"
+            className=" absolute w-20 lg:w-58 bottom-[12vh] -left-[2vw] rotate-[310deg] z-50"
           />
 
           <Image
