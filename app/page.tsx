@@ -110,7 +110,7 @@ export default function Home() {
           ref={fadeBg}
           className="absolute inset-0 h-screen bg-[url(/images/amlaBg.png)] bg-center bg-no-repeat bg-cover text-white flex items-start lg:items-center justify-start"
         >
-          <h1 className="text-balance text-[60px] md:text-8xl lg:text-[135px] leading-[1.1] font-extrabold w-full md:w-[24%] absolute left-4 md:left-20 lg:left-36 top-1/6 md:top-24 lg:top-22 z-20 tracking-tight">
+          <h1 className="text-balance text-[60px] md:text-8xl lg:text-[120px] leading-[1.1] font-extrabold w-full md:w-[24%] absolute left-4 md:left-20 lg:left-36 top-1/6 md:top-24 lg:top-22 z-20 tracking-tight">
             Nature&apos;s Answer to HairFall.
           </h1>
 
