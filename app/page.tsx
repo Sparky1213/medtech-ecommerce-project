@@ -110,7 +110,7 @@ export default function Home() {
           ref={fadeBg}
           className="absolute inset-0 h-screen bg-[url(/images/amlaBg.png)] bg-center bg-no-repeat bg-cover text-white flex items-start lg:items-center justify-start"
         >
-          <h1 className="text-balance text-[60px] md:text-8xl lg:text-[135px] leading-[1.1] font-extrabold w-full md:w-[24%] absolute left-4 md:left-20 lg:left-32 top-1/6 md:top-24 lg:top-22 z-20 tracking-tight">
+          <h1 className="text-balance text-[60px] md:text-8xl lg:text-[135px] leading-[1.1] font-extrabold w-full md:w-[24%] absolute left-4 md:left-20 lg:left-36 top-1/6 md:top-24 lg:top-22 z-20 tracking-tight">
             Nature&apos;s Answer to HairFall.
           </h1>
 
@@ -212,10 +212,10 @@ export default function Home() {
           ref={leavesRef}
           className="absolute inset-0 h-screen bg-linear-to-l from-[#FFFEFE26] to-[#DFE2D2] text-[#4E482E] flex items-center justify-end z-30 pointer-events-none"
         >
-          <h1 className="text-[#4E482E] text-balance absolute text-[40px] md:text-8xl lg:text-[130px] leading-[1.0] md:max-w-5xl text-right top-60 md:top-32 lg:top-60 right-4 md:right-32 lg:right-40 font-medium z-10 tracking-tight">
+          <h1 className="text-[#4E482E] text-balance absolute text-[40px] md:text-8xl lg:text-[100px] leading-[1.0] md:max-w-5xl text-right top-60 md:top-32 lg:top-40 right-4 md:right-32 lg:right-40 font-medium z-10 tracking-tight">
             Calmed by
             <br />
-            <span className="font-extrabold  sm:text-[80px] md:text-[150px] leading-[0.8]">
+            <span className="font-extrabold  sm:text-[80px] md:text-[90px] lg:text-[100px]  leading-[0.8]">
               Ashwagandha
             </span>
           </h1>
