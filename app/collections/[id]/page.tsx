@@ -151,13 +151,14 @@ export default function ProductPage() {
                     </div>
 
                     <div className="w-full lg:w-1/2 pl-0 lg:pl-20 text-[#4E482E] mt-6 lg:mt-0">
-                        <h1 className="text-3xl lg:text-6xl font-bold mb-4">
+                        <h1 className="text-2xl lg:text-4xl font-bold mb-4 leading-snug">
                             {product.name}
                         </h1>
 
-                        <h3 className="text-xl font-semibold mb-6">
-                            ₹ {product.price}
-                        </h3>
+                        <div className="flex items-baseline gap-1 mb-6">
+                            <span className="text-sm font-medium text-[#A6B11E] tracking-wide">₹</span>
+                            <span className="text-3xl font-bold text-[#4E482E] tracking-tight">{product.price}</span>
+                        </div>
                         {product.stock === 0 ? (
                             <p className="text-red-600 font-semibold text-lg mb-4">
                                 Out of Stock
