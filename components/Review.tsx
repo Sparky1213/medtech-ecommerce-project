@@ -81,12 +81,12 @@ export default function Review() {
   return (
     <section
       ref={leavesRef}
-      className={`relative min-h-screen bg-[#F4F3EE] flex flex-col items-center justify-center py-20 lg:py-32 px-4 lg:px-6 pb-16 lg:pb-40 overflow-hidden ${lexend.className}`}
+      className={`relative bg-[#F4F3EE] flex flex-col items-center justify-center py-12 lg:py-20 px-4 lg:px-6 pb-8 lg:pb-12 overflow-hidden ${lexend.className}`}
     >
       {/* BIG TEXT */}
 
       <h1
-        className="absolute bottom-2 lg:-bottom-8 left-1/2 -translate-x-1/2 text-[40px] md:text-[90px] lg:text-[140px] font-extrabold text-black opacity-20 pointer-events-none select-none whitespace-nowrap"
+        className="mt-6 lg:mt-10 text-[40px] md:text-[90px] lg:text-[140px] font-extrabold text-[#4E482E] pointer-events-none select-none whitespace-nowrap z-[5] relative"
         style={{ letterSpacing: "0.04em" }}
       >
         Reviews
